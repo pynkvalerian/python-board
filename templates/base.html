@@ -6,18 +6,22 @@
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block stylesheet %}{% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'home' %}">Python Boards</a>
-    </nav>
-    <div class="container">
-      <ol class="breadcrumb my-4">
-        {% block breadcrumb %}
+    {% block body %}
+      {% include 'includes/navbar.html' %}
+      <div class="container">
+        <ol class="breadcrumb my-4">
+          {% block breadcrumb %}
+          {% endblock %}
+        </ol>
+        {% block content %}
         {% endblock %}
-      </ol>
-      {% block content %}
-      {% endblock %}
-    </div>
+      </div>
+    {% endblock body %}
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>
