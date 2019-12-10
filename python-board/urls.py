@@ -22,6 +22,8 @@ from boards import views as board_views
 
 urlpatterns = [
     path('', board_views.home, name='home'),
+
+    #### User Auth
     path('signup', account_views.signup, name='signup'),
     path('login', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
@@ -45,7 +47,13 @@ urlpatterns = [
         name='password_change'),
     path('settings/password/done', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'),
+
+    #### Boards
+    path('boards/<int:pk>/topics/<int:topic_pk>/new', board_views.new_topic_posts, name='new_topic_posts'),
+    path('boards/<int:pk>/topics/<int:topic_pk>', board_views.topic_posts, name='topic_posts'),
     path('boards/<int:pk>/topics', board_views.new_topics, name="new_topics"),
     path('boards/<int:pk>', board_views.board_topics, name='board_topics'),
+
+    #### Admin
     path('admin/', admin.site.urls),
 ]
