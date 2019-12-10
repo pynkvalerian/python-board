@@ -7,6 +7,7 @@
     <div class="col-md-4 offset-md-4">
       <form method="post" novalidate>
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
         {% include 'includes/form.html' %}
         <div class="text-center mx-5">
           <button type="submit" class="btn btn-warning btn-block">Log in</button>
