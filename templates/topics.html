@@ -10,5 +10,39 @@
 {% endblock %}
 
 {% block content %}
-    <!-- just leaving it empty for now. we will add core here soon. -->
+  <div class="row">
+    <div class="col-md-3 border-right">
+      <h3>Start New Topic</h3>
+      <form method="post" action="/board/{{ board.id }}/topics">
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-warning">Post</button>
+      </form>
+    </div>
+
+    <div class="col-md-9">
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Topic</th>
+            <th>Starter</th>
+            <th>Replies</th>
+            <th>Views</th>
+            <th>Last Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for topic in board.topics.all %}
+            <tr>
+              <td>{{ topic.subject }}</td>
+              <td>{{ topic.starter.username }}</td>
+              <td>0</td>
+              <td>0</td>
+              <td>{{ topic.last_updated }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}
