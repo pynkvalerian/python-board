@@ -58,7 +58,10 @@ class PostListView(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        self.topic.add_views()
+        session_key = 'viewed_topic_{}'.format(self.topic.pk)
+        if not self.request.session.get(session_key, False):
+            self.topic.add_views()
+            self.request.session[session_key] = True
         kwargs['topic'] = self.topic
         kwargs['form'] = NewPostForm()
         return super().get_context_data(**kwargs)

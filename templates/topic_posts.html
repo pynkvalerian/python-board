@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block title %}{{ topic.subject }}{% endblock %}
 
@@ -23,8 +24,8 @@
     {% for post in posts %}
       <div class="row mt-3 align-items-center">
         <div class="col-md-3 offset-md-1 text-right">
-          <small class="text-muted">{{ post.created_at }}</small>
           <p class="text-muted">{{ post.created_by.username }}</p>
+          <small class="text-muted">{{ post.created_at|naturaltime }}</small>
         </div>
         <div class="col-md-6">
             <div class="card">
