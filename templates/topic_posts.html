@@ -10,24 +10,26 @@
 
 {% block content %}
   <div class="container">
-    <div class="row mt-3">
-      <div class="col-md-6 offset-md-3">
-        {% for post in topic.posts.all %}
-          <div class="card">
-            <div class="card-body">
-              <small class="float-right text-muted">{{ post.created_at }}</small>
-              <p class="text-muted">{{ post.created_by.username }}</p>
-              <p class="card-text">{{ post.message }}</p>
-              {% if post.created_by == user %}
-                <a href="#" class="btn btn-secondary btn-sm">Edit</a>
-              {% endif %}
+    {% for post in topic.posts.all %}
+      <div class="row mt-3 align-items-center">
+        <div class="col-md-3 offset-md-1 text-right">
+          <small class="text-muted">{{ post.created_at }}</small>
+          <p class="text-muted">{{ post.created_by.username }}</p>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">{{ post.message }}</p>
+                {% if post.created_by == user %}
+                  <a href="#" class="btn btn-secondary btn-sm">Edit</a>
+                {% endif %}
+              </div>
             </div>
-          </div>
-        {% endfor %}
+        </div>
       </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-6 offset-md-3">
+    {% endfor %}
+    <div class="row mt-3 mb-5">
+      <div class="col-md-8 offset-md-2">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Write your comment</h5>
