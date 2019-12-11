@@ -21,7 +21,7 @@ from accounts import views as account_views
 from boards import views as board_views
 
 urlpatterns = [
-    path('', board_views.home, name='home'),
+    path('', board_views.BoardListView.as_view(), name='home'),
 
     #### User Auth
     path('signup', account_views.signup, name='signup'),
@@ -49,6 +49,7 @@ urlpatterns = [
         name='password_change_done'),
 
     #### Boards
+    path('boards/<int:pk>/topics/<int:topic_pk>/posts/<int:post_pk>/edit', board_views.PostUpdateView.as_view(), name='edit_post'),
     path('boards/<int:pk>/topics/<int:topic_pk>/new', board_views.new_topic_posts, name='new_topic_posts'),
     path('boards/<int:pk>/topics/<int:topic_pk>', board_views.topic_posts, name='topic_posts'),
     path('boards/<int:pk>/topics', board_views.new_topics, name="new_topics"),

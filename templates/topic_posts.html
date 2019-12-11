@@ -21,7 +21,7 @@
               <div class="card-body">
                 <p class="card-text">{{ post.message }}</p>
                 {% if post.created_by == user %}
-                  <a href="#" class="btn btn-secondary btn-sm">Edit</a>
+                  <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}" class="btn btn-secondary btn-sm">Edit</a>
                 {% endif %}
               </div>
             </div>
