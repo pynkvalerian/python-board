@@ -8,6 +8,16 @@
   <li class="breadcrumb-item active">{{ topic.subject }}</li>
 {% endblock %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% endblock %}
+{% block javascript %}
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
+
 {% block content %}
   <div class="container">
     {% for post in posts %}
@@ -19,7 +29,7 @@
         <div class="col-md-6">
             <div class="card">
               <div class="card-body">
-                <p class="card-text">{{ post.message }}</p>
+                <p class="card-text">{{ post.get_message_as_markdown }}</p>
                 {% if post.created_by == user %}
                   <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}" class="btn btn-secondary btn-sm">Edit</a>
                 {% endif %}
